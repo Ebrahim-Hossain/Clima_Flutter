@@ -1,7 +1,5 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer';
-
 class GeoLocation {
 
  double? latitude;
@@ -31,6 +29,7 @@ class GeoLocation {
 
     if (permission == LocationPermission.deniedForever) {
       // Show dialog to open app settings
+      if(!context.mounted)return ;
       showDialog(
         context: context,
         builder: (_) => AlertDialog(
@@ -55,10 +54,7 @@ class GeoLocation {
     }
 
     final position = await Geolocator.getCurrentPosition(
-      locationSettings: LocationSettings(
-        accuracy: LocationAccuracy.high,
-        distanceFilter: 100,
-      ),
+      locationSettings: locationSettings,
     );
     latitude = position.latitude;
     longitude = position.longitude;

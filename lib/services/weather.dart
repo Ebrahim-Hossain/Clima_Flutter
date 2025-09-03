@@ -1,4 +1,24 @@
+import 'package:flutter/cupertino.dart';
+import '../screens/geo_location.dart';
+import 'networking.dart';
+
+const String apiKey = 'ec7e7f457581d84099b4738d08e5d1cf';
+
 class WeatherModel {
+
+  Future<dynamic> getLocationData(BuildContext context) async {
+
+    GeoLocation geoLocation = GeoLocation();
+    await geoLocation.getCurrentLocation(context);
+
+    GetWeatherData getWeatherData = GetWeatherData(
+      url:
+      'https://api.openweathermap.org/data/2.5/weather?lat=${geoLocation.latitude}&lon=${geoLocation.longitude}&appid=$apiKey&units=metric',
+    );
+    var weatherData = await getWeatherData.getData();
+    return weatherData;
+  }
+
   String getWeatherIcon(int condition) {
     if (condition < 300) {
       return '🌩';
