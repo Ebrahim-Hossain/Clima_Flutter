@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clima_flutter/services/weather.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
@@ -51,10 +53,7 @@ class _LocationScreenState extends State<LocationScreen> {
           image: DecorationImage(
             image: AssetImage('images/location_background.jpg'),
             fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-              Colors.white,
-              BlendMode.dstATop,
-            ),
+            colorFilter: ColorFilter.mode(Colors.white, BlendMode.dstATop),
           ),
         ),
         constraints: BoxConstraints.expand(),
@@ -68,16 +67,29 @@ class _LocationScreenState extends State<LocationScreen> {
                 children: <Widget>[
                   TextButton(
                     onPressed: () async {
-                     var weatherData = await weather.getLocationData(context);
-                     uiInterface(weatherData);
+                      var weatherData = await weather.getLocationData(context);
+                      uiInterface(weatherData);
                     },
-                    child: Icon(Icons.near_me, size: 50.0),
+                    child: Icon(Icons.near_me, size: 50.0, color: Colors.white),
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {return CityScreen();}));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return CityScreen(onBack: (value) {
+                              log('Worked $value');
+                            });
+                          },
+                        ),
+                      );
                     },
-                    child: Icon(Icons.location_city, size: 50.0),
+                    child: Icon(
+                      Icons.location_city,
+                      size: 50.0,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),
