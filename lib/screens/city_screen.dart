@@ -1,12 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 
 class CityScreen extends StatefulWidget {
-  const CityScreen({super.key,this.onBack});
-
-  final Function(String?)? onBack;
+  const CityScreen({super.key});
 
   @override
   _CityScreenState createState() => _CityScreenState();
@@ -52,17 +48,13 @@ class _CityScreenState extends State<CityScreen> {
                   decoration: kTextFieldDecoration,
                   onChanged: (value) {
                     cityName = value;
-                    log(value);
 
                   },
                 ),
               ),
               TextButton(
                 onPressed: () {
-                  if(cityName != null) {
-                    widget.onBack!(cityName);
-                  }
-                  Navigator.pop(context);
+                  Navigator.pop(context, cityName);
                 },
                 child: Text('Get Weather', style: kButtonTextStyle),
               ),

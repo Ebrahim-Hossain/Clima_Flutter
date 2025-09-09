@@ -73,17 +73,16 @@ class _LocationScreenState extends State<LocationScreen> {
                     child: Icon(Icons.near_me, size: 50.0, color: Colors.white),
                   ),
                   TextButton(
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async{
+                      var typedName = await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return CityScreen(onBack: (value) {
-                              log('Worked $value');
-                            });
+                            return CityScreen();
                           },
                         ),
                       );
+                      log(typedName);
                     },
                     child: Icon(
                       Icons.location_city,
