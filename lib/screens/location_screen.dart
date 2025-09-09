@@ -83,7 +83,8 @@ class _LocationScreenState extends State<LocationScreen> {
                         ),
                       );
                       if(typedName != null) {
-                        var weatherData = 4;
+                        var weatherData = await weather.getCityData(context, typedName);
+                        uiInterface(weatherData);
                       }
                     },
                     child: Icon(

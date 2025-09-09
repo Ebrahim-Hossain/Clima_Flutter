@@ -6,7 +6,7 @@ const String apiKey = 'ec7e7f457581d84099b4738d08e5d1cf';
 
 class WeatherModel {
 
-  Future<void> getCityData(BuildContext context,String cityName) async {
+  Future<dynamic> getCityData(BuildContext context,String cityName) async {
     GetWeatherData getWeatherData = GetWeatherData(
       url:
       'https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=$apiKey&units=metric',
