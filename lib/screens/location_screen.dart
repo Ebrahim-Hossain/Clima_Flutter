@@ -82,7 +82,9 @@ class _LocationScreenState extends State<LocationScreen> {
                           },
                         ),
                       );
-                      log(typedName);
+                      if(typedName != null) {
+                        var weatherData = 4;
+                      }
                     },
                     child: Icon(
                       Icons.location_city,
